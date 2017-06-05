@@ -1,0 +1,6 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <a href='{% url 'renew-expense' expense.id %}'>Date: {{ expense.expense_date }}</a>
+  <p><strong>Expense Details:</strong> {{ expense.expense_detail }}</p>
+{% endblock %}

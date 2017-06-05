@@ -1,0 +1,48 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<style>
+table.GeneratedTable {
+  width: 100%;
+  background-color: #ffffff;
+  border-collapse: collapse;
+  border-width: 2px;
+  border-color: #ffcc00;
+  border-style: solid;
+  color: #000000;
+}
+
+table.GeneratedTable td, table.GeneratedTable th {
+  border-width: 2px;
+  border-color: #ffcc00;
+  border-style: solid;
+  padding: 3px;
+}
+
+table.GeneratedTable thead {
+  background-color: #ffcc00;
+}
+</style>
+
+<div style="
+    position:fixed;
+    top: 50%;
+    left: 50%;
+    width:30em;
+    height:15em;
+    margin-top: -9em; /*set to a negative number 1/2 of your height*/
+    margin-left: -15em; /*set to a negative number 1/2 of your width*/
+    border: 1px solid #ccc;
+    background-color: #f3f3f3;">
+
+<form action="" method="post" style="padding: 20px 40px 20px 40px">
+    {% csrf_token %}
+    <table class="GeneratedTable">
+    {{ form.as_table }}
+    </table>
+    <input type="submit" value="Submit" style="margin:10px 0px 0px 130px; width: 100px"/>
+    <input type="submit" name="skip" value="Skip" style="width: 100px"/>
+    
+</form>
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Expense List</h1>
+
+    {% if expense_list %}
+    <ul>
+    <table id="dvTable"  class="GeneratedTable">
+      <thead>
+    <tr>
+      <th>Date</th>
+      <th>Details</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+      {% for expense in expense_list %} 
+      <!--li!-->
+      <tr>
+         <td>{{ expense.expense_date }}</td>
+         <td>{{ expense.expense_detail }}</td>
+         <td>{{ expense.expense_date }}</td>
+        <!-- a href="{{ expense.get_absolute_url }}">{{ expense.expense_date }}</a!--> 
+      </tr>
+      <!--/li!-->
+      {% endfor %}
+   </tbody>
+   </table>   
+    </ul>
+    {% else %}
+      <p>There are no expenses made by you.</p>
+    {% endif %}       
+    </ul>
+    {% if form %}
+    <form action="" method="get">
+        {% csrf_token %}
+        <table>
+        {{ form }}
+        </table>
+        <input type="submit" value="Search" />
+    </form>
+    {% endif %}
+
+{% endblock %}

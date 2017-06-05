@@ -1,0 +1,73 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div style="
+    position:fixed;
+    top: 50%;
+    left: 50%;
+    width:30em;
+    height:12em;
+    margin-top: -9em; /*set to a negative number 1/2 of your height*/
+    margin-left: -15em; /*set to a negative number 1/2 of your width*/
+    border: 1px solid #ccc;
+    background-color: #f3f3f3;">
+
+<style>
+table.GeneratedTable {
+  width: 100%;
+  background-color: #ffffff;
+  border-collapse: collapse;
+  border-width: 2px;
+  border-color: #ffcc00;
+  border-style: solid;
+  color: #000000;
+}
+
+table.GeneratedTable td, table.GeneratedTable th {
+  border-width: 2px;
+  border-color: #ffcc00;
+  border-style: solid;
+  padding: 3px;
+}
+
+table.GeneratedTable thead {
+  background-color: #ffcc00;
+}
+</style>
+
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p>Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+    {% else %}
+    <p style = "margin-left:10px">Please login to see this page.</p>
+    {% endif %}
+{% endif %}
+
+<form method="post" action="{% url 'login' %}" style="padding: 20px 40px 20px 40px" >
+{% csrf_token %}
+
+<!-- <div style = "margin-left: 50px">
+  <td>{{ form.username.label_tag }}</td>
+  <td>{{ form.username }}</td>
+</div>
+<div style = "margin-left: 50px">
+  <td>{{ form.password.label_tag }}</td>
+  <td>{{ form.password }}</td>
+</div> -->
+  <table class="GeneratedTable">
+    {{ form.as_table }}
+  </table>
+  <input type="submit" value="login" style="margin:20px 0px 0px 130px; width: 100px"/>
+  <input type="hidden" name="next" value="" style="margin:20px 0px 0px 130px; width: 100px" />
+
+</form>
+
+{# Assumes you setup the password_reset view in your URLconf #}
+<p style="margin-left: 170px"><a href="{% url 'password_reset' %}">Lost password?</a></p>
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  {% if expense_list %}
+    <h1> Expense </h1>
+    <ul>
+    {% for expense in expense_list %}
+      <li>
+       <a href = '{{ expense.get_absolute_url }}'> {{ expense.expense_date }} </a>
+      </li>
+    {% endfor %}
+  {% else %}
+    <h1> Oops.... Books are not available in library </h1>
+  {% endif %}
+    </ul>
+{% endblock %}
