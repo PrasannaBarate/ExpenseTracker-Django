@@ -18,13 +18,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
-
-with open('/etc/secret_key.txt') as f:
-    SECRET_KEY = f.read().strip()
+#SECRET_KEY = 'cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag'
+import os
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
+DEBUG = True
+# DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
 #Set hosts to allow any app on Heroku and the local testing URL
 ALLOWED_HOSTS = ['.herokuapp.com','127.0.0.1']
